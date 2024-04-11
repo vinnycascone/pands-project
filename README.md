@@ -1,1 +1,2 @@
 # pands-project
+The Iris dataset is a classic dataset in the field of machine learning and statistics. It contains 150 samples of iris flowers, each with four features: sepal length, sepal width, petal length, and petal width. Each sample is labeled with one of three species: Iris setosa, Iris versicolor, or Iris virginica.
