@@ -34,3 +34,22 @@ with open(output_file_path, "w") as file:
     file.write(summary_stats_str)
 
 print(f"Summary statistics saved to {output_file_path}")
+
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset (assuming it's in CSV format and named iris.csv)
+iris_df = pd.read_csv("iris.csv", header=None, names=["sepal_length", "sepal_width", "petal_length", "petal_width", "species"])
+
+# Create histograms for each variable
+for column in iris_df.columns[:-1]:  # Exclude the 'species' column
+    plt.figure()  # Create a new figure
+    plt.hist(iris_df[column], bins=10, color='skyblue', edgecolor='black')  # Create histogram
+    plt.title(f'Histogram of {column}')  # Set title
+    plt.xlabel(column)  # Set x-axis label
+    plt.ylabel('Frequency')  # Set y-axis label
+    plt.grid(True)  # Show grid
+    plt.tight_layout()  # Adjust layout
+    plt.savefig(f'{column}_histogram.png')  # Save histogram as PNG file
+    plt.close()  # Close the current figure to release memory
+
+print("Histograms saved as PNG files.")
