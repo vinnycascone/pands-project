@@ -53,3 +53,18 @@ for column in iris_df.columns[:-1]:  # Exclude the 'species' column
     plt.close()  # Close the current figure to release memory
 
 print("Histograms saved as PNG files.")
+
+# Create scatter plots for each pair of variables
+for i, col1 in enumerate(iris_df.columns[:-1]):
+    for col2 in iris_df.columns[i+1:]:
+        plt.figure()  # Create a new figure
+        plt.scatter(iris_df[col1], iris_df[col2], c='blue', alpha=0.5)  # Create scatter plot
+        plt.title(f'Scatter plot of {col1} vs {col2}')  # Set title
+        plt.xlabel(col1)  # Set x-axis label
+        plt.ylabel(col2)  # Set y-axis label
+        plt.grid(True)  # Show grid
+        plt.tight_layout()  # Adjust layout
+        plt.savefig(f'{col1}_vs_{col2}_scatter.png')  # Save scatter plot as PNG file
+        plt.close()  # Close the current figure to release memory
+
+print("Scatter plots saved as PNG files.")
