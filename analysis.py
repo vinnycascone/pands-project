@@ -54,7 +54,7 @@ for column in iris_df.columns[:-1]:  # Exclude the 'species' column
 
 print("Histograms saved as PNG files.")
 
-# Create scatter plots for each pair of variables
+# Creating scatter plots for each pair of variables
 for i, col1 in enumerate(iris_df.columns[:-1]):
     for col2 in iris_df.columns[i+1:]:
         plt.figure()  # Create a new figure
@@ -68,3 +68,21 @@ for i, col1 in enumerate(iris_df.columns[:-1]):
         plt.close()  # Close the current figure to release memory
 
 print("Scatter plots saved as PNG files.")
+
+
+import seaborn as sns
+
+# Exclude the non-numeric 'species' column
+numeric_data = iris_df.drop('species', axis=1)
+
+# Calculate the Spearman correlation matrix for numeric columns
+correlation_matrix = numeric_data.corr(method='spearman')
+
+# Plotting the heatmap
+plt.figure(figsize=(8, 6))
+heatmap = sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', cbar=True)
+plt.title("Spearman Correlation Matrix of Iris Dataset Numerical Features")
+
+# Save the heatmap to a file
+plt.savefig("spearman_correlation_heatmap.png")
+plt.close()  # Close the plot explicitly after saving
